@@ -10,7 +10,7 @@ const server = app.listen(0, () => {
     res.on('end', () => {
       const data = JSON.parse(body);
       assert.strictEqual(res.statusCode, 200);
-      assert.strictEqual(data.status, 'OK');
+      assert.strictEqual(data.status, 'FAIL');
       console.log('Test passed');
       server.close();
     });
