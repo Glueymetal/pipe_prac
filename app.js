@@ -4,7 +4,7 @@ const app = express();
 app.get('/', (req, res) => res.send('Pipeline practice app'));
 
 app.get('/status', (req, res) => {
-  res.json({ status: 'OK', version: 'v1' });
+  res.json({ status: 'OK', version: 'v2' });
 });
 
 module.exports = app;
