@@ -1,5 +1,10 @@
 pipeline{
     agent any
+
+    environment{
+        TAG =  "${env.build_no}"
+    }
+
     stages{
         stage('Checkout')
         {
@@ -11,7 +16,14 @@ pipeline{
         stage('Build')
         {
             steps{
-                bat 'docker build -t pipeline-image .'
+                bat 'docker build -t pipeline-image:%TAG% .'
+            }
+        }
+
+        stage('Test')
+        {
+            steps{
+                bat 'docker run --rm pipeline-image:%TAG% npm test'
             }
         }
 
@@ -19,7 +31,7 @@ pipeline{
         {
             steps{
                 bat 'docker rm --force test'
-                bat 'docker run -d -p 3006:3000 --name=test pipeline-image'
+                bat 'docker run -d -p 3006:3000 --name=test pipeline-image:%TAG%'
             }
         }
 
