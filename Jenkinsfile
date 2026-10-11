@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('Chechout')
+        stage('Checkout')
         {
             steps{
                 checkout scm
@@ -18,7 +18,7 @@ pipeline{
         stage('Deploy')
         {
             steps{
-                bat 'docker rm --force pipeline-image'
+                bat 'docker rm --force test'
                 bat 'docker run -d -p 3006:3000 --name=test pipeline-image'
             }
         }
