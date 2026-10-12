@@ -3,6 +3,8 @@ pipeline{
 
     environment{
         TAG =  "${env.BUILD_NUMBER}"
+        MINIKUBE_HOME = 'C:\\Users\\msjgk\\.minikube'
+        KUBECONFIG = 'C:\\Users\\msjgk\\.kube\\config'
     }
 
     stages{
