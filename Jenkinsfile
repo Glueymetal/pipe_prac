@@ -53,7 +53,7 @@ pipeline{
                 bat 'minikube image load pipeline-image:%TAG%'
                 bat 'kubectl apply -f k8s/'
                 bat 'kubectl set image deployment/pipeline-app pipeline-app=pipeline-image:%TAG%'
-                bat 'kubectl rollout status deployment/pipeline-app'
+                bat 'kubectl rollout status deployment/pipeline-app --timeout=120s'
             }
         }
     }
